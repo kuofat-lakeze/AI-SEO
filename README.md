@@ -56,6 +56,7 @@ open output/dashboard.html
 5. [`docs/05-關鍵字測試_宜蘭包棟.md`](docs/05-關鍵字測試_宜蘭包棟.md)：**實際測一組字怎麼做**，含 2026-10-14 的真實基準快照
 6. [`docs/06-包棟訂房平台_讓AI引用的做法.md`](docs/06-包棟訂房平台_讓AI引用的做法.md)：做一個包棟訂房平台要怎麼讓 AI 引用，資料層、頁面樹、獨家資料、技術、站外、量測、進行順序
 7. [`docs/07-目標題型_地區與人數包棟.md`](docs/07-目標題型_地區與人數包棟.md)：**目標題型「地區 × 包棟」「人數 × 包棟」**：四組字的基準快照、每個題型一頁的頁面規格、優先順序與追蹤目標
+8. [`docs/08-WebApp設計_包棟訂房平台.md`](docs/08-WebApp設計_包棟訂房平台.md)：**Web App 設計**：架構、資料模型、一題型一頁的路由、AI 可讀性檢查清單、後台流程、量測層、技術選型、分期；原型在 `app/`
 
 ## 測一組關鍵字（例：宜蘭包棟）
 
@@ -88,3 +89,12 @@ open output/citations/宜蘭包棟/report.html
 1. 拿到客戶的 access log（或 Cloudflare Logpush），`python3 lab/classify.py access.log* --out output/client.json`
 2. 做優化（放行 AI 爬蟲、`llms.txt`、Schema、FAQ 結構、內容更新）
 3. 一個月後再抓一次，`python3 lab/report.py 後.json --compare 前.json`，儀表板就是提案裡的成果頁
+
+## 訂房平台原型（app/）
+
+```bash
+python3 app/build_site.py          # 示範資料 → 32 頁 + llms.txt + sitemap + robots + 開放資料
+open app/site/台中包棟/index.html
+```
+
+示範「一題型一頁」的結構：一句話結論、比較表、怎麼選、FAQ、JSON-LD、交叉連結。設計文件見 `docs/08`。
