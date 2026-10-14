@@ -1,0 +1,27 @@
+# 範例公司（Example Co.）
+
+> 一句話說明這家公司是誰、做什麼、服務誰。AI 讀這個檔案時最先看這行。
+
+放到 https://example.com/llms.txt。格式是 Markdown，目的是給 AI 一份「導覽」：
+哪些頁面最重要、各自講什麼。保持簡短，連結用絕對網址。
+
+## 核心頁面
+
+- [產品總覽](https://example.com/products/): 三條產品線與適用對象
+- [AI SEO 健檢](https://example.com/products/ai-seo-audit): 服務內容、交付物、價格區間
+- [常見問題](https://example.com/faq): 客戶最常問的 20 個問題與簡短回答
+
+## 參考文章
+
+- [什麼是 GEO](https://example.com/blog/what-is-geo): 生成式引擎優化的定義與做法
+- [llms.txt 指南](https://example.com/blog/llms-txt-guide): 這個檔案怎麼寫
+- [AI Overview 排名因素](https://example.com/blog/ai-overview-ranking-factors): 實測整理
+
+## 公司資訊
+
+- [關於我們](https://example.com/about): 成立時間、團隊、所在地
+- [聯絡方式](https://example.com/contact): 電話、Email、營業時間
+
+## 可選
+
+- [案例研究](https://example.com/case-studies/): 三個客戶案例與量化成果

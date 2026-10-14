@@ -1,0 +1,23 @@
+{
+  "_comment": "FAQ 結構化資料範例。放進頁面 <script type=\"application/ld+json\">。AI 摘要與答案引擎最愛抓這種「問題 + 短答案」的結構。Organization 與 Product 類型照同樣做法。",
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "什麼是 AI SEO？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AI SEO 是讓網站內容能被 AI 搜尋與 AI 助理找到、理解並引用的一整套做法，涵蓋 SEO、GEO、LLMO、AEO 與 MEO。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "AI SEO 的成效怎麼量化？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "分三層：伺服器 log 裡各類 AI 爬蟲的造訪次數（被讀到）、AI 答案引用品牌的比例（被引用）、從 AI 平台導入的真人流量與轉換（被點擊）。"
+      }
+    }
+  ]
+}

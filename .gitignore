@@ -1,0 +1,3 @@
+# 模擬 log 很大，不進版控；跑 ./run.sh 會重新產生
+output/*.log
+__pycache__/
