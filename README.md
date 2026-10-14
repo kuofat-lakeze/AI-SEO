@@ -40,6 +40,8 @@ open output/dashboard.html
 | `lab/generate_logs.py` | 產生模擬 nginx access log，含 `baseline`（優化前）與 `optimized`（優化後）兩個情境 |
 | `lab/classify.py` | 讀 log → 分類 → `stats.json`。**真實環境可以直接餵 `/var/log/nginx/access.log`** |
 | `lab/report.py` | `stats.json` → 一頁式儀表板，排版對照原圖，另加前後對照、AI 導流、熱門頁面、被擋爬蟲 |
+| `lab/citation_check.py` | **AI 引用追蹤**：拿題庫問 Claude / Perplexity / OpenAI 或貼手動回答，算引用率與聲量 |
+| `lab/queries/` | 關鍵字題庫，`宜蘭包棟.json` 是範例 |
 | `run.sh` | 一鍵跑完整條流程 |
 | `templates/` | 交付給客戶的範本：`robots.txt`、`llms.txt`、nginx log 格式、Schema 範例 |
 | `docs/` | 解說文件（見下） |
@@ -51,6 +53,19 @@ open output/dashboard.html
 2. [`docs/02-真實環境資料怎麼拿.md`](docs/02-真實環境資料怎麼拿.md)：nginx / Apache / Cloudflare / GA4 / Search Console / GBP 的接法，爬蟲驗證，常見坑
 3. [`docs/03-量化成果與提案Demo.md`](docs/03-量化成果與提案Demo.md)：指標定義、before / after 怎麼做、給客戶的 demo 腳本、交付物清單
 4. [`docs/04-動手玩.md`](docs/04-動手玩.md)：這個 lab 可以玩的幾個實驗
+5. [`docs/05-關鍵字測試_宜蘭包棟.md`](docs/05-關鍵字測試_宜蘭包棟.md)：**實際測一組字怎麼做**，含 2026-10-14 的真實基準快照
+
+## 測一組關鍵字（例：宜蘭包棟）
+
+```bash
+# 零預算：自己問 ChatGPT / Perplexity / Gemini，把回答貼進 CSV
+python3 lab/citation_check.py lab/queries/宜蘭包棟.json --backend manual --input answers.csv --platform ChatGPT
+# 有 API：自動跑整份題庫
+python3 lab/citation_check.py lab/queries/宜蘭包棟.json --backend anthropic
+open output/citations/宜蘭包棟/report.html
+```
+
+算出引用率、提及率、誰的網站被引用、品牌聲量佔比。每週跑一次就是趨勢。
 
 ## 三分鐘看懂產出
 
