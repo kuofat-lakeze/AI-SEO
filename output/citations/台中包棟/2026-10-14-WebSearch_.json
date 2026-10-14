@@ -1,0 +1,54 @@
+{
+  "keyword": "台中包棟",
+  "date": "2026-10-14",
+  "platform": "WebSearch 快照",
+  "generated_at": "2026-10-14T06:50:23",
+  "raw": {
+    "q02": {
+      "answer": "搜尋結果裡最相關的是 TVBS 食尚玩家的一篇台中包棟民宿整理，標題指出共有 17 家，涵蓋日式古蹟和農莊等不同風格。不過搜尋摘要沒有列出各家的店名，所以無法直接推薦具體民宿。另外有一間可參考：台中國美館附近存中街一帶的老屋民宿一米陽光，三間房，但不確定是否整棟出租。",
+      "citations": [
+        "https://supertaste.tvbs.com.tw/travel/356673",
+        "https://supertaste.tvbs.com.tw/infocard/11391"
+      ]
+    }
+  },
+  "queries": [
+    {
+      "id": "q02",
+      "intent": "資訊",
+      "text": "台中包棟民宿推薦",
+      "target_cited": false,
+      "target_position": null,
+      "target_mentioned": false,
+      "cited_domains": [
+        "supertaste.tvbs.com.tw"
+      ],
+      "brands_mentioned": [
+        "_comment",
+        "食尚玩家"
+      ],
+      "answer_excerpt": "搜尋結果裡最相關的是 TVBS 食尚玩家的一篇台中包棟民宿整理，標題指出共有 17 家，涵蓋日式古蹟和農莊等不同風格。不過搜尋摘要沒有列出各家的店名，所以無法直接推薦具體民宿。另外有一間可參考：台中國美館附近存中街一帶的老屋民宿一米陽光，三間房，但不確定是否整棟出租。"
+    }
+  ],
+  "summary": {
+    "n_queries": 1,
+    "citation_rate": 0.0,
+    "mention_rate": 0.0,
+    "top_domains": [
+      [
+        "supertaste.tvbs.com.tw",
+        1
+      ]
+    ],
+    "brand_share": [
+      [
+        "_comment",
+        1
+      ],
+      [
+        "食尚玩家",
+        1
+      ]
+    ]
+  }
+}

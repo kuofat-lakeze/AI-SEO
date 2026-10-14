@@ -1,0 +1,108 @@
+{
+  "keyword": "20人包棟",
+  "date": "2026-10-14",
+  "platform": "WebSearch 快照",
+  "generated_at": "2026-10-14T06:50:24",
+  "raw": {
+    "q02": {
+      "answer": "宜蘭：食尚玩家整理了 10 間適合 8 至 20 人的宜蘭包棟民宿；冬山的 135會館可住到 20 人，6 間房、戶外泳池與烤肉區、KTV 和電動麻將桌。台東：uptogo 整理了台東市區、卑南、鹿野、東河與成功等地可容納約 20 人的包棟民宿與 Villa，市區的別有洞天系列附電梯、電動麻將。中部：可樂旅遊的包棟頁面列出苗栗三義的向草語蟲可住 20 人，包棟價 35,000 起；南投魚池的聖堡羅莊園兩館各可住 30 人，包棟價 37,520 起。上述價格多為旅行社頁面的起價。更多選擇可參考 gofunit 的全台包棟民宿推薦。",
+      "citations": [
+        "https://www.colatour.com.tw/webDM/package/sale/12/BnBVilla.html",
+        "https://supertaste.tvbs.com.tw/travel/355249",
+        "https://uptogo.com.tw/旅遊/台東20人包棟民宿？/",
+        "https://uptogo.com.tw/旅遊/旅遊訂房/宜蘭包棟民宿20人/",
+        "https://zh.airbnb.com/south-district-taichung-city-taiwan/stays/family-friendly",
+        "https://gofunit.com/包棟民宿推薦/"
+      ]
+    }
+  },
+  "queries": [
+    {
+      "id": "q02",
+      "intent": "資訊",
+      "text": "20人包棟民宿推薦",
+      "target_cited": false,
+      "target_position": null,
+      "target_mentioned": false,
+      "cited_domains": [
+        "colatour.com.tw",
+        "supertaste.tvbs.com.tw",
+        "uptogo.com.tw",
+        "zh.airbnb.com",
+        "gofunit.com"
+      ],
+      "brands_mentioned": [
+        "_comment",
+        "食尚玩家",
+        "gofunit",
+        "uptogo",
+        "可樂旅遊",
+        "135會館",
+        "聖堡羅莊園",
+        "向草語蟲"
+      ],
+      "answer_excerpt": "宜蘭：食尚玩家整理了 10 間適合 8 至 20 人的宜蘭包棟民宿；冬山的 135會館可住到 20 人，6 間房、戶外泳池與烤肉區、KTV 和電動麻將桌。台東：uptogo 整理了台東市區、卑南、鹿野、東河與成功等地可容納約 20 人的包棟民宿與 Villa，市區的別有洞天系列附電梯、電動麻將。中部：可樂旅遊的包棟頁面列出苗栗三義的向草語蟲可住 20 人，包棟價 35,000 起；南投魚池的聖堡羅莊園兩館各可住 30 人，包棟價 37,520 起。上述價格多為旅行社頁面的起價。更多選擇可參考 gofunit 的全台包棟民宿推薦。"
+    }
+  ],
+  "summary": {
+    "n_queries": 1,
+    "citation_rate": 0.0,
+    "mention_rate": 0.0,
+    "top_domains": [
+      [
+        "colatour.com.tw",
+        1
+      ],
+      [
+        "supertaste.tvbs.com.tw",
+        1
+      ],
+      [
+        "uptogo.com.tw",
+        1
+      ],
+      [
+        "zh.airbnb.com",
+        1
+      ],
+      [
+        "gofunit.com",
+        1
+      ]
+    ],
+    "brand_share": [
+      [
+        "_comment",
+        1
+      ],
+      [
+        "食尚玩家",
+        1
+      ],
+      [
+        "gofunit",
+        1
+      ],
+      [
+        "uptogo",
+        1
+      ],
+      [
+        "可樂旅遊",
+        1
+      ],
+      [
+        "135會館",
+        1
+      ],
+      [
+        "聖堡羅莊園",
+        1
+      ],
+      [
+        "向草語蟲",
+        1
+      ]
+    ]
+  }
+}

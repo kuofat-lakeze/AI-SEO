@@ -1,0 +1,119 @@
+{
+  "keyword": "台中包棟",
+  "target": {
+    "brands": [
+      "平台名"
+    ],
+    "domains": [
+      "example-platform.tw"
+    ]
+  },
+  "competitors": {
+    "_comment": "AI 回答包棟題型時會點名的來源與品牌。整理站是真正的競爭者，因為被引用的是它們。",
+    "食尚玩家": [
+      "食尚玩家",
+      "supertaste",
+      "TVBS"
+    ],
+    "gofunit": [
+      "gofunit"
+    ],
+    "FunTime": [
+      "FunTime",
+      "funtime"
+    ],
+    "uptogo": [
+      "uptogo"
+    ],
+    "housefeel": [
+      "housefeel"
+    ],
+    "yam 旅遊": [
+      "yam",
+      "蕃薯藤"
+    ],
+    "可樂旅遊": [
+      "可樂旅遊",
+      "colatour"
+    ],
+    "Airbnb": [
+      "Airbnb",
+      "airbnb"
+    ],
+    "Booking.com": [
+      "Booking.com",
+      "Booking"
+    ],
+    "Agoda": [
+      "Agoda",
+      "agoda"
+    ],
+    "AsiaYo": [
+      "AsiaYo"
+    ],
+    "水井町": [
+      "水井町"
+    ],
+    "135會館": [
+      "135會館",
+      "135 會館"
+    ],
+    "梅花參": [
+      "梅花參"
+    ],
+    "老古石渡": [
+      "老古石渡"
+    ],
+    "樹沐漱石": [
+      "樹沐漱石"
+    ],
+    "聖堡羅莊園": [
+      "聖堡羅"
+    ],
+    "向草語蟲": [
+      "向草語蟲"
+    ]
+  },
+  "queries": [
+    {
+      "id": "q01",
+      "intent": "資訊",
+      "text": "台中包棟"
+    },
+    {
+      "id": "q02",
+      "intent": "資訊",
+      "text": "台中包棟民宿推薦"
+    },
+    {
+      "id": "q03",
+      "intent": "資訊",
+      "text": "台中有哪些包棟民宿？幫我列出來"
+    },
+    {
+      "id": "q04",
+      "intent": "比較",
+      "text": "台中包棟民宿 有泳池 KTV 麻將 的推薦"
+    },
+    {
+      "id": "q05",
+      "intent": "比較",
+      "text": "台中親子包棟民宿推薦"
+    },
+    {
+      "id": "q06",
+      "intent": "交易",
+      "text": "台中包棟一晚多少錢？平日和假日的價格"
+    },
+    {
+      "id": "q07",
+      "intent": "交易",
+      "text": "台中包棟民宿 可以帶寵物 怎麼訂"
+    },
+    {
+      "id": "q08",
+      "intent": "交易",
+      "text": "這個週末台中包棟還有空房嗎？12個人"
+    }
+  ]
+}
