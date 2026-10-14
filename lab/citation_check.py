@@ -10,6 +10,7 @@ AI 引用追蹤：拿同一組問題去問各個 AI 平台，記錄「誰被引�
   # 2. 用 Perplexity API（PERPLEXITY_API_KEY）或 OpenAI（OPENAI_API_KEY）
   python3 citation_check.py queries/宜蘭包棟.json --backend perplexity
   python3 citation_check.py queries/宜蘭包棟.json --backend openai
+  python3 citation_check.py queries/宜蘭包棟.json --backend gemini         # GEMINI_API_KEY，Google 搜尋 grounding
 
   # 3. 零預算：自己去 ChatGPT / Perplexity / Gemini 問，把回答貼進 CSV，再餵進來
   python3 citation_check.py queries/宜蘭包棟.json --backend manual --input answers.csv --platform ChatGPT
@@ -113,6 +114,21 @@ def ask_openai(query, model):
     return {"answer": "".join(answer), "citations": dedupe(cites)}
 
 
+def ask_gemini(query, model):
+    key = os.environ.get("GEMINI_API_KEY") or sys.exit("需要 GEMINI_API_KEY")
+    model = model or "gemini-2.5-flash"
+    data = _post_json(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+                      {"x-goog-api-key": key},
+                      {"system_instruction": {"parts": [{"text": SYSTEM}]},
+                       "contents": [{"parts": [{"text": query}]}],
+                       "tools": [{"google_search": {}}]})
+    cand = (data.get("candidates") or [{}])[0]
+    answer = "".join(p.get("text", "") for p in cand.get("content", {}).get("parts", []))
+    chunks = cand.get("groundingMetadata", {}).get("groundingChunks", [])
+    cites = [c["web"]["uri"] for c in chunks if c.get("web", {}).get("uri")]
+    return {"answer": answer, "citations": dedupe(cites)}
+
+
 def read_manual(path, queries):
     """CSV 欄位：query_id, answer, citations（多個網址用空白或換行分隔）"""
     rows = {}
@@ -125,8 +141,8 @@ def read_manual(path, queries):
     return rows
 
 
-BACKENDS = {"anthropic": ask_anthropic, "perplexity": ask_perplexity, "openai": ask_openai}
-DEFAULT_MODEL = {"anthropic": "claude-opus-5-5", "perplexity": "sonar", "openai": "gpt-5"}
+BACKENDS = {"anthropic": ask_anthropic, "perplexity": ask_perplexity, "openai": ask_openai, "gemini": ask_gemini}
+DEFAULT_MODEL = {"anthropic": "claude-opus-5-5", "perplexity": "sonar", "openai": "gpt-5", "gemini": "gemini-2.5-flash"}
 
 
 # ---------- 分析 ----------
@@ -207,6 +223,43 @@ def write_report(spec, snaps, out):
         f"<td class=num>{pct(s['summary']['citation_rate'])}</td><td class=num>{pct(s['summary']['mention_rate'])}</td></tr>"
         for s in snaps)
     latest = snaps[-1] if snaps else None
+
+    # 跨平台比較：同一個（最新）日期的所有快照並排
+    cross_html = ""
+    if latest:
+        same_day = [s for s in snaps if s["date"] == latest["date"]]
+        if len(same_day) >= 2:
+            cols = "".join(f"<th>{html.escape(s['platform'])}</th>" for s in same_day)
+            def row(label, fn):
+                return f"<tr><td>{label}</td>" + "".join(f"<td>{fn(s)}</td>" for s in same_day) + "</tr>"
+            all_domains = Counter()
+            all_brands = Counter()
+            for s in same_day:
+                for d, n in s["summary"]["top_domains"]:
+                    all_domains[d] += n
+                for b, n in s["summary"]["brand_share"]:
+                    all_brands[b] += n
+            def dom_cell(s, d):
+                n = dict(s["summary"]["top_domains"]).get(d, 0)
+                return f"<td class=num>{n or '—'}</td>"
+            dom_table = "".join(f"<tr><td>{html.escape(d)}</td>" + "".join(dom_cell(s, d) for s in same_day) + f"<td class=num>{t}</td></tr>"
+                                for d, t in all_domains.most_common(12))
+            brand_table = "".join(f"<tr><td>{html.escape(b)}</td>" + "".join(f"<td class=num>{dict(s['summary']['brand_share']).get(b, 0) or '—'}</td>" for s in same_day) + f"<td class=num>{t}</td></tr>"
+                                  for b, t in all_brands.most_common(12))
+            cross_html = f"""
+<section><h2>跨平台比較 <small>{latest['date']}，{len(same_day)} 個平台，同一份題庫</small></h2>
+<table><thead><tr><th>指標</th>{cols}</tr></thead><tbody>
+{row('題數', lambda s: s['summary']['n_queries'])}
+{row('引用率', lambda s: pct(s['summary']['citation_rate']))}
+{row('提及率', lambda s: pct(s['summary']['mention_rate']))}
+{row('引用的網域數', lambda s: len(s['summary']['top_domains']))}
+{row('提到的品牌數', lambda s: len(s['summary']['brand_share']))}
+</tbody></table>
+<div class="two" style="margin-top:16px">
+<div><h3>各平台引用的網域（題數）</h3><table><thead><tr><th>網域</th>{cols}<th class=num>合計</th></tr></thead><tbody>{dom_table}</tbody></table></div>
+<div><h3>各平台提到的品牌（題數）</h3><table><thead><tr><th>品牌</th>{cols}<th class=num>合計</th></tr></thead><tbody>{brand_table}</tbody></table></div>
+</div>
+<p class="hint">只有一個平台引用的來源可能是偶然；多個平台都引用的來源才是這個題型的「標準答案」，也是優先要出現的地方。</p></section>"""
     dom_rows = brand_rows = q_rows = ""
     if latest:
         total_q = latest["summary"]["n_queries"] or 1
@@ -244,6 +297,7 @@ th{{color:var(--ink2);font-size:12px}} td.num,th.num{{text-align:right;white-spa
 </div></section>
 <section><h2>趨勢（每份快照）</h2><table><thead><tr><th>日期</th><th>平台</th><th class=num>題數</th><th class=num>引用率</th><th class=num>提及率</th></tr></thead><tbody>{rows_trend}</tbody></table>
 <p class="hint">每週跑一次同一份題庫，這張表就是「做了優化之後 AI 有沒有開始引用」的證據。</p></section>
+{cross_html}
 <section class="two"><div><h2>誰的網站被引用（最新快照）</h2><table><thead><tr><th>網域</th><th class=num>題數</th><th class=num>佔比</th></tr></thead><tbody>{dom_rows}</tbody></table>
 <p class="hint">這些是 AI 真正拿來當依據的來源。若都是媒體與整理站，策略就是「讓客戶出現在這些文章裡」加上「讓客戶官網本身變成可引用的來源」。</p></div>
 <div><h2>品牌聲量（最新快照）</h2><table><thead><tr><th>品牌</th><th class=num>被提到的題數</th><th class=num>佔比</th></tr></thead><tbody>{brand_rows}</tbody></table></div></section>
